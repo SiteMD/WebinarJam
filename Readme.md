@@ -6,6 +6,7 @@
 
 ```php
 use WebinarJam\WebinarJam;
+
 include "WebinarJam.php";
 ```
 
@@ -17,13 +18,13 @@ $webinarjam = new WebinarJam(API key);
 
 ## Доступные методы
 
-**Список всех вебинаров**
+### Список всех вебинаров
 
 ```php
 $return_arr = $webinarjam->getWebinars();
 ```
 
-**Подробная информация об индивидуальном вебинаре**
+### Подробная информация об индивидуальном вебинаре
 
 ```php
 /**
@@ -32,7 +33,7 @@ $return_arr = $webinarjam->getWebinars();
 $return_arr = $webinar->getWebinar($webinar_id);
 ```
 
-**Регистрация человека на вебинар**
+### Регистрация человека на вебинар
 
 ```php
 /**
