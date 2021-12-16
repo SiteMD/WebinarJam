@@ -1,0 +1,25 @@
+{
+   "name": "webinarjam/webinarjam",
+   "type": "library",
+   "description": "Cloud broadcasting",
+   "keywords": [
+      "webinarjam"
+   ],
+   "license": "MIT",
+   "minimum-stability": "dev",
+   "authors": [
+      {
+         "name": "Iulian Ceapa",
+         "email": "info@sitemd.net",
+         "role": "Lead Developer"
+      }
+   ],
+   "require": {
+      "php": ">=5.6"
+   },
+   "autoload": {
+      "psr-4": {
+         "WebinarJam\\": "src/"
+      }
+   }
+}

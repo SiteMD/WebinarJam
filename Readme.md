@@ -1,18 +1,26 @@
 # API WebinarJam
 
+## Установка
+
+Установить библиотеку можно с помощью интерфейса командной строки при наличии Composer:
+
+```bash
+composer require webinarjam/webinarjam
+```
+
 ## Использование
 
-Подключите файл `WebinarJam.php`, чтобы его можно было использовать.
+После установки потребуется подключить автозагрузчик Composer:
 
 ```php
-use WebinarJam\WebinarJam;
-
-include "WebinarJam.php";
+require "vendor/autoload.php";
 ```
 
 Создайте новый экземпляр класса WebinarJam, и укажите ключ API WebinarJam. Дополнительную информацию о получении ключа API можно найти в документации по [API WebinarJam](https://documentation.webinarjam.com/connecting-to-our-api/).
 
 ```php
+use WebinarJam\WebinarJam;
+
 $webinarjam = new WebinarJam(API key);
 ```
 
