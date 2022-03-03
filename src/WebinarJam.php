@@ -7,6 +7,8 @@
 
 namespace WebinarJam;
 
+use WebinarJam\Exceptions\WebinarJamException;
+
 class WebinarJam
 {
    const API_URL = "https://api.webinarjam.com/webinarjam";
@@ -41,7 +43,7 @@ class WebinarJam
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       $out = curl_exec($curl);
       if ($out === false) {
-         throw new \Exception("Ошибка соединения с сервером api.webinarjam.com.");
+         throw new WebinarJamException("Ошибка соединения с сервером api.webinarjam.com.");
       }
       curl_close($curl);
       return json_decode($out, true);
