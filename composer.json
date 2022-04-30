@@ -1,12 +1,12 @@
 {
-   "name": "webinarjam/webinarjam",
-   "type": "library",
+   "name": "sitemd/webinarjam",
    "description": "Cloud broadcasting",
+   "type": "library",
    "keywords": [
-      "webinarjam"
+      "webinarjam",
+      "sitemd"
    ],
    "license": "MIT",
-   "minimum-stability": "dev",
    "authors": [
       {
          "name": "Iulian Ceapa",
@@ -21,5 +21,6 @@
       "psr-4": {
          "WebinarJam\\": "src/"
       }
-   }
+   },
+   "minimum-stability": "dev"
 }
