@@ -5,7 +5,7 @@
 Установить библиотеку можно с помощью интерфейса командной строки при наличии Composer:
 
 ```bash
-composer require webinarjam/webinarjam
+composer require sitemd/webinarjam
 ```
 
 ## Использование
@@ -45,7 +45,7 @@ $return_arr = $webinar->getWebinar($webinar_id);
 
 ```php
 /**
- * @param string $webinar_id Идентификатор вебинара
+ * @param int $webinar_id Идентификатор вебинара
  * @param array $user Данные пользователя
  */
 $user = array(

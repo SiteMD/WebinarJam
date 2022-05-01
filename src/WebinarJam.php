@@ -86,7 +86,7 @@ class WebinarJam
    /**
     * Регистрация человека на вебинар.
     *
-    * @param string $webinar_id Идентификатор вебинара
+    * @param int $webinar_id Идентификатор вебинара
     * @param array $user Данные пользователя
     *
     * Пример:
