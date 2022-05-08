@@ -43,7 +43,7 @@ class WebinarJam
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       $out = curl_exec($curl);
       if ($out === false) {
-         throw new WebinarJamException("Ошибка соединения с сервером api.webinarjam.com.");
+         throw new WebinarJamException(curl_error($curl) . ", error code: " . curl_errno($curl));
       }
       curl_close($curl);
       return json_decode($out, true);
@@ -93,7 +93,7 @@ class WebinarJam
     * ```
     * $user = array(
     *    "first_name" => "",
-    *    "last_name" => "", // Optional
+    *    "last_name" => "", // Может быть обязательным в зависимости от настроенных параметров для каждого вебинара
     *    "email" => "",
     *    "phone_country_code" => "", // Optional
     *    "phone" => "", // Optional
