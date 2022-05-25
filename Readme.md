@@ -29,31 +29,64 @@ $webinarjam = new WebinarJam(API key);
 ### Список всех вебинаров
 
 ```php
-$return_arr = $webinarjam->getWebinars();
+$webinarjam->getWebinars();
 ```
 
 ### Подробная информация об индивидуальном вебинаре
 
 ```php
-/**
- * @param int $webinar_id Идентификатор вебинара
- */
-$return_arr = $webinar->getWebinar($webinar_id);
+$webinar->getWebinar($webinar_id);
 ```
+
+| Параметр    | Тип  | Описание               |
+| :---------- | :--- | :--------------------- |
+| $webinar_id | int  | Идентификатор вебинара |
 
 ### Регистрация человека на вебинар
 
+При успешного выполнения будет возвращен массив, содержащий информацию о пользователе и вебинаре, в противном случае null.
+
 ```php
-/**
- * @param int $webinar_id Идентификатор вебинара
- * @param array $user Данные пользователя
- */
-$user = array(
-  "first_name" => "",
-  "last_name" => "", // необязательно
-  "email" => "",
-  "phone_country_code" => "", // необязательно
-  "phone" => "" // необязательно
-);
 $webinarjam->registration($webinar_id, $user);
+```
+
+| Параметр    | Тип   | Описание               |
+| :---------- | :---- | :--------------------- |
+| $webinar_id | int   | Идентификатор вебинара |
+| $user       | array | Данные пользователя    |
+
+В качестве параметра `$user` необходимо отправить массив с ниже указанными ключами.
+
+| Ключ               | Тип    | Описание                                                                                       |
+| :----------------- | :----- | :--------------------------------------------------------------------------------------------- |
+| first_name         | string | Имя                                                                                            |
+| last_name          | string | Фамилия (может быть обязательным в зависимости от настроенных параметров для каждого вебинара) |
+| email"             | string | Email                                                                                          |
+| phone_country_code | string | Код страны с "+"                                                                               |
+| phone              | string | Номер телефона (только цифры)                                                                  |
+
+## Пример
+
+```php
+use WebinarJam\WebinarJam;
+// Подключение автозагрузчика
+require "vendor/autoload.php";
+$webinarjam = new WebinarJam(API key);
+// Идентификатор вебинара
+$webinar_id = 2;
+// Данные пользователя
+$user = array(
+   "first_name" => "FirstName",
+   "last_name" => "LastName",
+   "email" => "test@email.com",
+   "phone_country_code" => "+1",
+   "phone" => "1234567890"
+);
+// Проверяем, не закончился ли вебинар
+if (empty($webinarjam->getWebinar($webinar_id)["webinar"]["schedules"])) {
+   echo "Регистрация на вебинар завершена";
+} else{
+   // Регистрация человека на вебинар
+   $webinarjam->registration($webinar_id, $user);
+}
 ```

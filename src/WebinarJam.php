@@ -29,16 +29,15 @@ class WebinarJam
     * Вызов API.
     *
     * @param string $path Доп. адрес
-    * @param string $method Метод подключения [POST|GET]
     * @param array $params Параметры при отправке
-    * @return void
+    * @return array|null
     */
-   private function callApi($path, $method, $params = array())
+   private function callApi($path, $params = array())
    {
       $curl = curl_init();
       curl_setopt($curl, CURLOPT_URL, self::API_URL . $path);
-      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
-      curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+      curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
       curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       $out = curl_exec($curl);
@@ -59,9 +58,9 @@ class WebinarJam
    {
       $path = "/webinars";
       $params = [
-         'api_key' => $this->api_key
+         "api_key" => $this->api_key
       ];
-      $result = $this->callApi($path, "POST", $params);
+      $result = $this->callApi($path, $params);
       return $result;
    }
 
@@ -76,10 +75,10 @@ class WebinarJam
    {
       $path = "/webinar";
       $params = [
-         'api_key'   => $this->api_key,
-         'webinar_id' => $webinar_id
+         "api_key"   => $this->api_key,
+         "webinar_id" => $webinar_id
       ];
-      $result = $this->callApi($path, "POST", $params);
+      $result = $this->callApi($path, $params);
       return $result;
    }
 
@@ -93,13 +92,13 @@ class WebinarJam
     * ```
     * $user = array(
     *    "first_name" => "",
-    *    "last_name" => "", // Может быть обязательным в зависимости от настроенных параметров для каждого вебинара
+    *    "last_name" => "", // Optional
     *    "email" => "",
     *    "phone_country_code" => "", // Optional
     *    "phone" => "", // Optional
     * );
     * ```
-    * @return array
+    * @return array|null
     * @link https://documentation.webinarjam.com/register-a-person-to-a-specific-webinar/
     */
    public function registration($webinar_id, $user)
@@ -108,17 +107,17 @@ class WebinarJam
 
       $path = "/register";
       $params = [
-         'api_key'            => $this->api_key,
-         'webinar_id'         => $webinar_id,
-         'first_name'         => $user["first_name"],
-         'last_name'          => @$user["last_name"],
-         'email'              => $user["email"],
-         'schedule'           => $webinar_info['webinar']['schedules']['0']['schedule'],
-         'ip_address'         => $_SERVER['REMOTE_ADDR'],
-         'phone_country_code' => @$user["phone_country_code"],
-         'phone'              => @$user["phone"]
+         "api_key"            => $this->api_key,
+         "webinar_id"         => $webinar_id,
+         "first_name"         => $user["first_name"],
+         "last_name"          => @$user["last_name"],
+         "email"              => $user["email"],
+         "schedule"           => $webinar_info["webinar"]["schedules"]["0"]["schedule"],
+         "ip_address"         => $_SERVER["REMOTE_ADDR"],
+         "phone_country_code" => @$user["phone_country_code"],
+         "phone"              => @$user["phone"]
       ];
-      $result = $this->callApi($path, "POST", $params);
+      $result = $this->callApi($path, $params);
       return $result;
    }
 }
